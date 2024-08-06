@@ -33,7 +33,6 @@ public class EmployeeService {
     public Employee getEmployeeById(int id){
         try {
             Employee employee = repo.findById(id).get();
-            
             return employee;
         }catch (Exception exception){
             return null;
@@ -54,11 +53,18 @@ public class EmployeeService {
     public CommonResponse<Employee> updateEmployeeById(int id, Employee newemployee){
         try {
             Employee employee = repo.findById(id).get();
-            employee.setName(newemployee.getName());
-            employee.setSalary(newemployee.getSalary());
-            employee.setRole(newemployee.getRole());
-            repo.save(employee);
-            return new CommonResponse<Employee>(true,"Employee Updated successFully",newemployee,null);
+            if(employee != null ) {
+                employee.setName(newemployee.getName());
+                employee.setSalary(newemployee.getSalary());
+                employee.setRole(newemployee.getRole());
+                employee.setEmail(newemployee.getEmail());
+                employee.setPhoneNumber(newemployee.getPhoneNumber());
+                newemployee.setId(employee.getId());
+                repo.save(employee);
+                return new CommonResponse<Employee>(true, "Employee Updated successFully", newemployee, null);
+            }else{
+                return new CommonResponse<Employee>(true, "Employee Id is not Valid", null, null);
+            }
         }catch(Exception exception){
             return new CommonResponse<Employee>(false,"Employee Created UnsuccessFully",null,null);
         }
@@ -69,9 +75,9 @@ public class EmployeeService {
         try {
             repo.deleteById(id);
 //            new CommonResponse<Employee>();
-            return new CommonResponse(true, "Employee Delete successFully", null,null);
+            return new CommonResponse(true, "Employee Details Delete successFully", null,null);
         } catch (Exception exception) {
-            return new CommonResponse(false, "Employee Delete UnsuccessFully", null, null);
+            return new CommonResponse(false, "Employee Details Delete UnsuccessFully", null, null);
         }
     }
 

@@ -1,10 +1,14 @@
 package com.spring.boot.SpringFirsrApplication.model;
 
 import jakarta.persistence.*;
+import lombok.Getter;
+import lombok.Setter;
 import org.springframework.context.annotation.EnableLoadTimeWeaving;
 
 @Entity
 @Table(name = "employees")
+@Getter
+@Setter
 public class Employee {
 
     @Id
@@ -16,6 +20,8 @@ public class Employee {
     private double salary;
     @Column(name = "employee_role")
     private String role;
+    @Column(name = "employee_emil")
+    private String email;
 
     public int getId() {
         return id;
