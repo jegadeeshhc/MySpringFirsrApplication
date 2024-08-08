@@ -1,14 +1,16 @@
 package com.spring.boot.SpringFirsrApplication.model;
 
 import jakarta.persistence.*;
+import lombok.Data;
 import lombok.Getter;
 import lombok.Setter;
+import lombok.ToString;
 import org.springframework.context.annotation.EnableLoadTimeWeaving;
 
+@Data
 @Entity
 @Table(name = "employees")
-@Getter
-@Setter
+@ToString
 public class Employee {
 
     @Id
@@ -20,8 +22,10 @@ public class Employee {
     private double salary;
     @Column(name = "employee_role")
     private String role;
-    @Column(name = "employee_emil")
+    @Column(name = "employee_emil",unique = true)
     private String email;
+    @Column(name= "employee_phone_number",unique = true)
+    private Long phoneNumber;
 
     public int getId() {
         return id;
@@ -54,4 +58,21 @@ public class Employee {
     public void  setSalary(double salary) {
         this.salary = salary;
     }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
+    public String getEmail(){
+        return email;
+    }
+
+    public void setPhoneNumber(Long phoneNumber){
+        this.phoneNumber=phoneNumber;
+    }
+
+    public Long getPhoneNumber(){
+        return phoneNumber;
+    }
+
 }

@@ -16,12 +16,15 @@ public class CommonResponse<T> {
     public T data;
     public String error;
 
-//    public CommonResponse(boolean status,String message,T data,String error){
+
+    public CommonResponse(boolean status, String message, Object data, Object error) {
+    }
+
+//    public CommonResponse(boolean status, String message, T data, String error){
 //        this.message=message;
 //        this.status=status;
 //        this.data=data;
 //        this.error=error;
-//    }
-
+//}
 
 }
