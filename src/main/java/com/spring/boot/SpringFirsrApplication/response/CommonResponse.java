@@ -17,8 +17,7 @@ public class CommonResponse<T> {
     public String error;
 
 
-    public CommonResponse(boolean status, String message, Object data, Object error) {
-    }
+
 
 //    public CommonResponse(boolean status, String message, T data, String error){
 //        this.message=message;
